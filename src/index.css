@@ -1,0 +1,52 @@
+body {
+  margin: 0;
+}
+
+h1 {
+  color: white;
+  margin: 0
+}
+
+#root {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #3f3f3f;
+}
+
+#row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.vertical-container {
+  width: 20vw;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3vh;
+}
+
+.automation-properties {
+  background-color: #2a2a2a;
+  width: 14vw;
+}
+
+.action {
+  height: 7vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#new {
+  background-color: #2a2a2a;
+}
+
+#generate {
+  background-color: #13622b;
+  color: white;
+  text-transform: uppercase;
+}
