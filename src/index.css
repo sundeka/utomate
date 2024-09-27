@@ -5,7 +5,23 @@ body {
 h1 {
   color: white;
   margin: 0;
-  font-size: 5em;
+  font-family: monospace;
+}
+
+label {
+  font-family: system-ui;
+}
+
+@media screen and (min-width: 601px) {
+  h1 {
+    font-size: 5em;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 3em;
+  }
 }
 
 #root {
@@ -22,6 +38,7 @@ h1 {
 }
 
 .vertical-container {
+  margin-top: 2vh;
   width: 63%;
   max-width: 500px;
   min-width: 240px;
@@ -42,6 +59,7 @@ h1 {
   flex-direction: column;
   justify-content: space-between;
   gap: 0.5em;
+  border-radius: 6px;
 }
 
 .action {
@@ -50,14 +68,41 @@ h1 {
   display: flex;
   justify-content: center;
   align-items: center;
+  scale: 1.0;
+  transition: scale 100ms linear;
+  border-radius: 3px;
+}
+
+.action:hover {
+  cursor: pointer;
+  scale: 1.015;
+  transition: scale 100ms linear;
+}
+
+.action:active {
+  scale: 0.98;
+  transition: scale 50ms linear;
+}
+
+.action i {
+  font-size: 2vw;
+  color: white;
+  margin-block: 12px;
 }
 
 #new {
   background-color: #2a2a2a;
+  height: auto;
 }
 
 #generate {
   background-color: #13622b;
   color: white;
   text-transform: uppercase;
+}
+
+#generate span {
+  font-family: system-ui;
+  font-weight: 600;
+  font-size: large;
 }

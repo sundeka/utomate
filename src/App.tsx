@@ -15,7 +15,7 @@ const App = () => {
         </div>
       </div>
       <div className="action" id="new">
-        <span>+</span>
+        <i className="fa-solid fa-plus"></i>
       </div>
       <div className="action" id="generate">
         <span>Generate code</span>
