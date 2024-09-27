@@ -5,7 +5,9 @@ const App = () => {
       <div className="automation-properties">
         <div id="row">
           <label>WebDriver</label>
-          <select></select>
+          <select>
+            <option>Chrome</option>
+          </select>
         </div>
         <div id="row">
           <label>Run headless?</label>
