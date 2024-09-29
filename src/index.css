@@ -12,6 +12,14 @@ label, p {
   font-family: system-ui;
 }
 
+a {
+  margin-top: -30px;
+  margin-bottom: -15px;
+  color: silver;
+  font-family: sans-serif;
+  font-size: smaller;
+}
+
 @media screen and (min-width: 601px) {
   h1 {
     font-size: 5em;

@@ -104,6 +104,7 @@ const App = () => {
   return (
     <div className="vertical-container">
       <h1>u-Tomate</h1>
+      <a href="./faq">FAQ</a>
 
 
       {/** Properties */}
@@ -121,6 +122,7 @@ const App = () => {
             defaultValue={webdriver}
           >
             <option value="chrome">Chrome</option>
+            <option value="firefox">Firefox</option>
           </select>
         </div>
         <div id="row">
