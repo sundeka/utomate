@@ -8,7 +8,7 @@ h1 {
   font-family: monospace;
 }
 
-label {
+label, p {
   font-family: system-ui;
 }
 
@@ -41,7 +41,7 @@ label {
   margin-top: 2vh;
   width: 63%;
   max-width: 500px;
-  min-width: 240px;
+  min-width: 355px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -50,7 +50,7 @@ label {
 
 .automation-properties {
   background-color: #2a2a2a;
-  min-width: 240px;
+  min-width: 355px;
   width: 14vw;
   color: white;
   font-size: 1.25em;
@@ -67,7 +67,7 @@ label {
 }
 
 .action {
-  height: 7vh;
+  height: auto;
   width: 100%;
   display: flex;
   justify-content: center;
@@ -75,6 +75,8 @@ label {
   scale: 1.0;
   transition: scale 100ms linear;
   border-radius: 3px;
+  color: white;
+  background-color: #2a2a2a;
 }
 
 .action:hover {
@@ -94,19 +96,116 @@ label {
   margin-block: 12px;
 }
 
+.action--select__header {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  align-items: center;
+  font-family: monospace;
+  text-transform: uppercase;
+  border: solid;
+  border-width: thin;
+  border-color: #3f3f3f;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  width: 83%;
+}
+
+.action--select__header #close {
+  position: absolute;
+  color: red;
+  right: 25px;
+  scale: 0.75;
+  transition: scale 100ms linear;
+}
+
+.action--select__header #close:hover {
+  scale: 0.9;
+  cursor: pointer;
+  transition: scale 100ms linear;
+}
+
+.action--select__options {
+  display: flex;
+  flex-direction: row;
+  width: 83%;
+  height: 175px;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.options__item {
+  border: solid;
+  border-width: thin;
+  border-color: #3f3f3f;
+  width: 180px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scale: 1;
+  transition: scale 100ms linear;
+}
+
+.options__item:hover {
+  scale: 1.05;
+  transition: scale 100ms linear;
+  cursor: pointer;
+}
+
 #new {
-  background-color: #2a2a2a;
   height: auto;
 }
 
-#generate {
-  background-color: #13622b;
-  color: white;
-  text-transform: uppercase;
+#select {
+  cursor: default;
+  transition: none;
+  scale: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  padding-bottom: 20px;
 }
 
-#generate span {
+#generate {
+  height: 7vh;
+  background-color: #13622b;
+}
+
+#generate-loading {
+  height: 7vh;
+  background-color: grey;
+  transition: none;
+  font-size: 2vw;
+}
+
+#generate-loading:hover {
+  cursor: default;
+  transition: none;
+  scale: 1;
+}
+
+#generate span, #generate-loading span {
   font-family: system-ui;
   font-weight: 600;
   font-size: large;
+  text-transform: uppercase;
+}
+
+.output {
+  background-color: #2a2a2a;
+  width: 100%;
+  border-radius: 3px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#data.output {
+  height: auto;
+}
+
+#loading.output {
+  height: 140px;
 }
