@@ -5,13 +5,16 @@ const App = () => {
   const [name, setName] = useState<string>("")
   const [webdriver, setWebdriver] = useState<string>("chrome")
   const [headless, setHeadless] = useState<boolean>(false)
-  const [steps, setSteps] = useState<[]>([])
+  const [steps, setSteps] = useState<React.ReactNode[]>([])
   
   const [isInserting, setIsInserting] = useState<boolean>(false)
 
+  // TODO: älä kasaa JSX elemejä vaan jsoneita, jokasta jsonia kohden renderaa tietty elem
+  // TODO: vasta finishattu step feediin!!! state handling pitää reworkata siltä osin
+
 
   const [data, setData] = useState<string>("")
-  const loading = false
+  const loading = true
   async function call() {
     if (!loading) {
       const payload = {
@@ -47,8 +50,55 @@ const App = () => {
     }
   }
 
-  const handleActionSelection = () => {
-    //
+  const handleActionSelection = (selection: string) => {
+    let content: React.ReactNode
+    let title: string = ""
+    switch (selection) {
+      case "find":
+        title = "Find an element"
+        content = (
+          <>
+            <div id="row">
+              <label>Strategy</label>
+              <select>
+                <option value="xpath">XPath</option>
+                <option value="css">CSS</option>
+              </select>
+            </div>
+            <div id="row">
+              <label>Until</label>
+              <select>
+                <option value="presence">Presence of element located</option>
+                <option value="visibility">Visibility of element located</option>
+              </select>
+            </div>
+            <div id="row">
+              <label>Locator</label>
+              <input></input>
+            </div>
+          </>
+        )
+        break
+      case "click":
+        break
+      case "open":
+        break
+      case "loop":
+        break
+    }
+    steps.push(
+      <div className="steps__instance">
+        <div className="instance__header">
+          <h2>{title}</h2>
+        </div>
+        {content}
+        <div className="instance__footer">
+          <div className="footer__ok-button">
+            <span>OK</span>
+          </div>
+        </div>
+      </div>
+    )
     setIsInserting(false)
   }
   
@@ -63,28 +113,28 @@ const App = () => {
           <div className="action--select__options">
             <div 
               className="options__item" 
-              onClick={() => handleActionSelection()}
+              onClick={() => handleActionSelection("find")}
               id="find"
             >
               <p>Find an element</p>
             </div>
             <div 
               className="options__item" 
-              onClick={() => handleActionSelection()}
+              //onClick={() => handleActionSelection("click")}
               id="click"
             >
               <p>Click an element</p>
             </div>
             <div 
               className="options__item" 
-              onClick={() => handleActionSelection()}
+              //onClick={() => handleActionSelection("open")}
               id="open"
             >
               <p>Open a website</p>
             </div>
             <div 
               className="options__item" 
-              onClick={() => handleActionSelection()}
+              //onClick={() => handleActionSelection("loop")}
               id="loop"
             >
               <p>Loop</p>
@@ -96,6 +146,16 @@ const App = () => {
       return (
         <div className="action" id="new" onClick={() => setIsInserting(true)}>
           <i className="fa-solid fa-plus"></i>
+        </div>
+      )
+    }
+  }
+
+  const renderSteps = () => {
+    if (steps.length > 0) {
+      return (
+        <div className="steps">
+          {steps.map((step: React.ReactNode) => { return step })}
         </div>
       )
     }
@@ -134,7 +194,7 @@ const App = () => {
 
       {/** Feed */}
 
-      {/** feed.map(()) */}
+      {renderSteps()}
       {renderInsertion()}
 
 
