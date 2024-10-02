@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Riple } from "react-loading-indicators";
+import Properties from "./components/Properties/Properties";
+import Header from "./components/Header/Header";
 
 const App = () => {
   const [name, setName] = useState<string>("")
@@ -163,44 +165,18 @@ const App = () => {
 
   return (
     <div className="vertical-container">
-      <h1>u-Tomate</h1>
-      <a href="./faq">FAQ</a>
-
-
-      {/** Properties */}
-
-
-      <div className="automation-properties">
-        <div id="row">
-          <label>Filename</label>
-          <input id="filename-input" onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)}/>
-        </div>
-        <div id="row">
-          <label>WebDriver</label>
-          <select 
-            onChange={(event: React.ChangeEvent<HTMLSelectElement>) => setWebdriver(event.target.value)}
-            defaultValue={webdriver}
-          >
-            <option value="chrome">Chrome</option>
-            <option value="firefox">Firefox</option>
-          </select>
-        </div>
-        <div id="row">
-          <label>Run headless?</label>
-          <input type="checkbox" value="headless" onClick={() => setHeadless(!headless)}></input>
-        </div>
-      </div>
-
-
+      <Header />
+      <Properties 
+        setName={setName}
+        setWebdriver={setWebdriver}
+        webdriver={webdriver}
+        setHeadless={setHeadless}
+        headless={headless}
+      />
       {/** Feed */}
-
       {renderSteps()}
       {renderInsertion()}
-
-
       {/** API call */}
-
-
       <div 
         className="action" 
         id={loading ? "generate-loading" : "generate"}
@@ -208,14 +184,8 @@ const App = () => {
       >
         <span>Generate code</span>
       </div>
-
-
       {/** API output */}
-
-
       {renderOutput()}
-
-
     </div>
   );
 }
