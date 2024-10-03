@@ -1,17 +1,75 @@
+import { useState } from "react"
 import { Step } from "../../objects/Step"
-import StepInstance from "./StepInstance/StepInstance"
+import { StepType } from "../../objects/StepType"
+import Find from "./StepInstance/Find"
 
 type StepsProps = {
   steps: Step[]
+  update: React.Dispatch<React.SetStateAction<Step[]>>
 }
 
 const Steps = ({
-  steps
+  steps,
+  update
 }: StepsProps) => {
+  
+  const [editingId, setEditingId] = useState<number | null>(null)
+  
+  const renderStep = (step: Step) => {
+    switch (step.type) {
+      case StepType.Find: {
+        return (
+          <h2>#{step.id} Find element - {step.locator}</h2>
+        )
+      }
+      default: {
+        return <></>
+      }
+    }
+  }
+
+  const renderEditStep = (step: Step) => {
+    switch (step.type) {
+      case StepType.Find: {
+        return <Find 
+          close={() => setEditingId(null)}
+          steps={steps}
+          update={update}
+          onUpdate={() => setEditingId(null)}
+          data={step}
+        />
+      }
+      default: {
+        return <></>
+      }
+    }
+  }
+  
   if (steps.length>0) {
     return (
       <div className="steps">
-        {steps.map((step: Step) => { return <StepInstance step={step} /> })}
+        {steps.map((step: Step) => { 
+          if (step.id === editingId) {
+            return renderEditStep(step)
+          } else {
+            return (
+              <div id="step">
+                <div id="description">
+                  {renderStep(step)}
+                </div>
+                <div id="options">
+                  <i 
+                    className="fa-solid fa-pen-to-square" 
+                    onClick={() => setEditingId(step.id)}
+                  />
+                  <i 
+                    className="fa-solid fa-trash" 
+                  />
+                </div>
+              </div>
+            )
+          }
+        })}
       </div>
     )
   }

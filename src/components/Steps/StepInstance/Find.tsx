@@ -30,10 +30,10 @@ const Find = (
       strategy: strategy,
       until: until,
       locator: locator ? locator : "",
-      id: 0,
+      id: steps.length+1,
       type: StepType.Find
     }
-    update([...steps, step])
+    update([...steps, step]) // needs fixing: adding vs editing
     onUpdate()
   }
   

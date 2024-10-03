@@ -13,7 +13,7 @@ const App = () => {
   const [steps, setSteps] = useState<Step[]>([])
 
   const [data, setData] = useState<string>("")
-  const loading = true
+  const loading = false
 
   async function call() {
     if (!loading) {
@@ -60,7 +60,7 @@ const App = () => {
         setHeadless={setHeadless}
         headless={headless}
       />
-      <Steps steps={steps} />
+      <Steps steps={steps} update={setSteps} />
       <Insert steps={steps} update={setSteps} />
       {/** API call */}
       <div 

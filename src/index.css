@@ -276,3 +276,36 @@ a {
   scale: 1.05;
   transition: scale 100ms linear;
 }
+
+.steps {
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: auto;
+  width: 100%;
+  color: white;
+}
+
+#step {
+  background-color: #2a2a2a;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#options {
+  display: flex;
+  width: 70px;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+#description {
+  padding-left: 20px;
+}
+
+.fa-solid.fa-trash {
+  color: red
+}
