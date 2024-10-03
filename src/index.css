@@ -236,10 +236,11 @@ a {
   background-color: #2a2a2a;
   height: auto;
   min-height: 50px;
-  padding: 20px;
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 20px;
+  border-radius: 3px;
 }
 
 .steps__instance #row select {
