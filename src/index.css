@@ -110,7 +110,14 @@ a {
   margin-block: 12px;
 }
 
-.action--select__header {
+.action #rows {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 400px;
+}
+
+.action__header {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -126,21 +133,7 @@ a {
   padding-block: 20px;
 }
 
-.action--select__header #close {
-  position: absolute;
-  color: red;
-  right: 25px;
-  scale: 0.75;
-  transition: scale 100ms linear;
-}
-
-.action--select__header #close:hover {
-  scale: 0.9;
-  cursor: pointer;
-  transition: scale 100ms linear;
-}
-
-.action--select__options {
+.action__options {
   display: flex;
   flex-direction: row;
   width: 83%;
@@ -172,7 +165,7 @@ a {
   height: auto;
 }
 
-#select {
+#instance {
   cursor: default;
   transition: none;
   scale: 1;
@@ -224,36 +217,32 @@ a {
   height: 140px;
 }
 
-.steps {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
-}
-
-.steps__instance {
-  color: white;
-  background-color: #2a2a2a;
-  height: auto;
-  min-height: 50px;
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  border-radius: 3px;
-}
-
-.steps__instance #row select {
-  width: 200px;
-}
-
-.steps__instance #row input {
-  width: 192px;
-}
-
-.instance__header h2 {
+.instance__header {
+  position: relative;
   display: flex;
   justify-content: center;
+  align-items: center;
+  border: solid;
+  border-width: thin;
+  border-color: #3f3f3f;
+  border-top: 0;
+  border-left: 0;
+  border-right: 0;
+  padding-block: 20px;
+}
+
+.fa-solid.fa-xmark {
+  position: absolute;
+  color: red;
+  right: 25px;
+  scale: 0.75;
+  transition: scale 100ms linear;
+}
+
+.fa-solid.fa-xmark #close:hover {
+  scale: 0.9;
+  cursor: pointer;
+  transition: scale 100ms linear;
 }
 
 .instance__footer {

@@ -46,12 +46,12 @@ const Insert = ({
     }
     case InsertionPhase.Selecting: {
       return (
-        <div className="action" id="select">
-          <div className="action--select__header">
+        <div className="action" id="instance">
+          <div className="action__header">
             <h2>Select an action</h2>
             <i className="fa-solid fa-xmark" id="close" onClick={() => setPhase(InsertionPhase.None)}></i>
           </div>
-          <div className="action--select__options">
+          <div className="action__options">
             <div 
               className="options__item" 
               onClick={() => handleActionSelection(StepType.Find)}
@@ -86,7 +86,7 @@ const Insert = ({
     }
     case InsertionPhase.Committing: {
       switch (selection) {
-        case StepType.Find: { return <Find close={handleGoBackFromCommitting}/> }
+        case StepType.Find: { return <Find close={handleGoBackFromCommitting} steps={steps} update={update} onUpdate={handleCommit}/> }
         case StepType.Click: { return <></> }
         case StepType.Open: { return <></> }
         case StepType.Loop: { return <></> } 
