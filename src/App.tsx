@@ -15,6 +15,8 @@ const App = () => {
   const [data, setData] = useState<string>("")
   const loading = false
 
+  const disableGenerate: boolean = loading || !name || steps.length == 0
+
   async function call() {
     if (!loading) {
       const payload = {
@@ -64,11 +66,10 @@ const App = () => {
       <Insert steps={steps} update={setSteps} />
       {/** API call */}
       <div 
-        className="action" 
-        id={loading ? "generate-loading" : "generate"}
-        onClick={() => call()}
+        className={disableGenerate ? "generate disabled" : "generate"} 
+        onClick={disableGenerate ? () => {} : () => call()}
       >
-        <span>Generate code</span>
+        <span>Generate</span>
       </div>
       {/** API output */}
       {renderOutput()}

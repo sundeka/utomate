@@ -194,25 +194,37 @@ a {
   padding-bottom: 20px;
 }
 
-#generate {
+.generate {
   height: 7vh;
   background-color: #13622b;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  scale: 1.0;
+  transition: scale 100ms linear;
+  border-radius: 3px;
+  color: white;
 }
 
-#generate-loading {
-  height: 7vh;
-  background-color: grey;
-  transition: none;
-  font-size: 2vw;
+.generate.disabled {
+  background-color: #0f1a12;
+  color: #313f35;
 }
 
-#generate-loading:hover {
-  cursor: default;
+.generate:hover {
+  cursor: pointer;
+  scale: 1.015;
+  transition: scale 100ms linear;
+}
+
+.generate.disabled:hover {
+  cursor: no-drop;
   transition: none;
   scale: 1;
 }
 
-#generate span, #generate-loading span {
+.generate span {
   font-family: system-ui;
   font-weight: 600;
   font-size: large;
