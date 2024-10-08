@@ -15,6 +15,15 @@ const Steps = ({
   
   const [editingId, setEditingId] = useState<number | null>(null)
   
+  const deleteById = (id: number) => {
+    const updatedSteps = steps.filter((step: Step) => step.id !== id)
+    const refreshedIds = updatedSteps.map((step: Step, index: number) => ({
+      ...step,
+      id: index + 1
+    }));
+    update(refreshedIds)
+  }
+  
   const renderStep = (step: Step) => {
     switch (step.type) {
       case StepType.Find: {
@@ -37,6 +46,7 @@ const Steps = ({
           update={update}
           onUpdate={() => setEditingId(null)}
           data={step}
+          editingId={editingId}
         />
       }
       default: {
@@ -63,7 +73,8 @@ const Steps = ({
                     onClick={() => setEditingId(step.id)}
                   />
                   <i 
-                    className="fa-solid fa-trash" 
+                    className="fa-solid fa-trash"
+                    onClick={() => deleteById(step.id)}
                   />
                 </div>
               </div>
