@@ -16,7 +16,7 @@ const Properties = ({
   return (
     <div className="automation-properties" data-testid="automation-properties">
       <div id="row" data-testid="row">
-        <label>Filename</label>
+        <label>Filename*</label>
         <input 
           id="filename-input" 
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)}
