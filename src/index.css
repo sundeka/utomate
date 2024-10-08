@@ -36,6 +36,10 @@ a {
   h1 {
     font-size: 3em;
   }
+  
+  h2 {
+    font-size: 1.1em;
+  }
 }
 
 #root {
@@ -155,6 +159,21 @@ a {
   transition: scale 100ms linear;
 }
 
+.options__item--disabled {
+  border: solid;
+  border-width: thin;
+  border-color: #3f3f3f;
+  background-color: #3f3f3f;
+  color: darkgray;
+  text-decoration: line-through;
+  width: 180px;
+  height: 65px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  scale: 1;
+}
+
 .options__item:hover {
   scale: 1.05;
   transition: scale 100ms linear;
@@ -266,6 +285,22 @@ a {
   justify-content: center;
   scale: 1;
   transition: scale 100ms linear;
+}
+
+.footer__ok-button--disabled {
+  height: 36px;
+  width: 150px;
+  border-radius: 4px;
+  background-color: #3f3f3f;
+  font-family: system-ui;
+  font-weight: 600;
+  font-size: large;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  scale: 1;
 }
 
 .footer__ok-button span {

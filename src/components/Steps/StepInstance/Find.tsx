@@ -8,6 +8,7 @@ type FindProps = {
   update: React.Dispatch<React.SetStateAction<Step[]>>
   onUpdate: () => void
   data?: FindStep
+  editingId?: number | null
 }
 
 const Find = (
@@ -17,15 +18,25 @@ const Find = (
     update,
     onUpdate,
     data,
+    editingId
   }
   : FindProps) => {
   const [strategy, setStrategy] = useState<string>(data ? data.strategy : "xpath")
   const [until, setUntil] = useState<string>(data ? data.until : "presence")
-  const [locator, setLocator] = useState<string | undefined>(data ? data.locator : undefined)
+  const [locator, setLocator] = useState<string>(data ? data.locator : "")
 
   const canProceed: boolean = !!strategy && !!until && !!locator
   
   const onSubmit = () => {
+    if (!!editingId) {
+      onEdit()
+    } else {
+      onAdd()
+    }
+    onUpdate()
+  }
+  
+  const onAdd = () => {
     const step: FindStep = {
       strategy: strategy,
       until: until,
@@ -33,8 +44,18 @@ const Find = (
       id: steps.length+1,
       type: StepType.Find
     }
-    update([...steps, step]) // needs fixing: adding vs editing
-    onUpdate()
+    update([...steps, step])
+  }
+
+  const onEdit = () => {
+    const step: Step | undefined = steps.find((s: Step) => s.id == editingId)
+    if (!!step && step.type == StepType.Find) {
+      step.strategy = strategy
+      step.until = until
+      step.locator = locator
+      const updatedSteps = steps.map((s: Step) => s.id === editingId ? step : s)
+      update(updatedSteps)
+    }
   }
   
   return (
@@ -64,7 +85,10 @@ const Find = (
         </div>
       </div>
       <div className="instance__footer">
-        <div className="footer__ok-button" onClick={() => onSubmit()}>
+        <div 
+          className={canProceed ? "footer__ok-button" : "footer__ok-button--disabled"} 
+          onClick={canProceed ? () => onSubmit() : () => {}}
+        >
           <span>OK</span>
         </div>
       </div>
