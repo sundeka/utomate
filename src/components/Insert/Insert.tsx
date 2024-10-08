@@ -60,22 +60,22 @@ const Insert = ({
               <p>Find an element</p>
             </div>
             <div 
-              className="options__item" 
-              onClick={() => handleActionSelection(StepType.Click)}
+              className="options__item--disabled" 
+              //onClick={() => handleActionSelection(StepType.Click)}
               id={StepType.Click}
             >
               <p>Click an element</p>
             </div>
             <div 
-              className="options__item" 
-              onClick={() => handleActionSelection(StepType.Open)}
+              className="options__item--disabled" 
+              //onClick={() => handleActionSelection(StepType.Open)}
               id={StepType.Open}
             >
               <p>Open a website</p>
             </div>
             <div 
-              className="options__item" 
-              onClick={() => handleActionSelection(StepType.Loop)}
+              className="options__item--disabled" 
+              //onClick={() => handleActionSelection(StepType.Loop)}
               id={StepType.Loop}
             >
               <p>Loop</p>
