@@ -39,7 +39,7 @@ const Insert = ({
   switch (phase) {
     case InsertionPhase.None: {
       return (
-        <div className="action" id="new" onClick={() => setPhase(InsertionPhase.Selecting)}>
+        <div className="action" id="new" data-testid="new" onClick={() => setPhase(InsertionPhase.Selecting)}>
           <i className="fa-solid fa-plus"></i>
         </div>
       )

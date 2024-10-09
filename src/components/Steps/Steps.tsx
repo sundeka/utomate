@@ -63,7 +63,7 @@ const Steps = ({
             return renderEditStep(step)
           } else {
             return (
-              <div id="step">
+              <div id="step" data-testid="step">
                 <div id="description">
                   {renderStep(step)}
                 </div>

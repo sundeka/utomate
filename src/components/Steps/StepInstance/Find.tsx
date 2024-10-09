@@ -65,21 +65,21 @@ const Find = (
         <i className="fa-solid fa-xmark" onClick={() => close()}></i>
       </div>
       <div id="rows">
-        <div id="row">
+        <div id="row" data-testid="row">
           <label>Strategy</label>
           <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setStrategy(e.target.value)}>
             <option value="xpath" selected={strategy === "xpath"}>XPath</option>
             <option value="css" selected={strategy === "css"}>CSS</option>
           </select>
         </div>
-        <div id="row">
+        <div id="row" data-testid="row">
           <label>Until</label>
           <select onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setUntil(e.target.value)}>
             <option value="presence" selected={until === "presence"}>Presence of element located</option>
             <option value="visibility" selected={until === "visibility"}>Visibility of element located</option>
           </select>
         </div>
-        <div id="row">
+        <div id="row" data-testid="row">
           <label>Locator</label>
           <input onChange={(e: React.ChangeEvent<HTMLInputElement>) => setLocator(e.target.value)} defaultValue={locator ? locator : undefined}></input>
         </div>
