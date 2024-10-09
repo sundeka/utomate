@@ -4,6 +4,8 @@ import Properties from './Properties';
 beforeEach(() => 
   render(
     <Properties 
+        disableFields={false}
+        name=""
         setName={jest.fn()}
         setWebdriver={jest.fn()}
         webdriver=""

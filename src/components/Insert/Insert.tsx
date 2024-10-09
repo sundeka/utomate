@@ -4,6 +4,7 @@ import { StepType } from "../../objects/StepType"
 import Find from "../Steps/StepInstance/Find"
 
 type InsertProps = {
+  disableInsertion: boolean
   steps: Step[]
   update: React.Dispatch<React.SetStateAction<Step[]>>
 }
@@ -15,6 +16,7 @@ enum InsertionPhase {
 }
 
 const Insert = ({
+  disableInsertion,
   steps,
   update
 }: InsertProps) => {
@@ -36,6 +38,10 @@ const Insert = ({
     setSelection(undefined)
   }
 
+  if (disableInsertion) {
+    return null
+  }
+  
   switch (phase) {
     case InsertionPhase.None: {
       return (

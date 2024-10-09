@@ -4,7 +4,7 @@ import Insert from './Insert';
 
 test('render plus icon by default', () => {
   const steps: Step[] = []
-  render(<Insert steps={steps} update={jest.fn()} />)
+  render(<Insert disableInsertion={false} steps={steps} update={jest.fn()} />)
   const insertionDiv = screen.getByTestId("new");
   expect(insertionDiv).toBeInTheDocument()
 })

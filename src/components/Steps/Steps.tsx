@@ -4,11 +4,13 @@ import { StepType } from "../../objects/StepType"
 import Find from "./StepInstance/Find"
 
 type StepsProps = {
+  disableEdit: boolean
   steps: Step[]
   update: React.Dispatch<React.SetStateAction<Step[]>>
 }
 
 const Steps = ({
+  disableEdit,
   steps,
   update
 }: StepsProps) => {
@@ -57,7 +59,7 @@ const Steps = ({
   
   if (steps.length>0) {
     return (
-      <div className="steps">
+      <div className={disableEdit ? "steps disabled" : "steps"}>
         {steps.map((step: Step) => { 
           if (step.id === editingId) {
             return renderEditStep(step)
@@ -70,11 +72,11 @@ const Steps = ({
                 <div id="options">
                   <i 
                     className="fa-solid fa-pen-to-square" 
-                    onClick={() => setEditingId(step.id)}
+                    onClick={disableEdit ? () => {} : () => setEditingId(step.id)}
                   />
                   <i 
                     className="fa-solid fa-trash"
-                    onClick={() => deleteById(step.id)}
+                    onClick={disableEdit ? () => {} : () => deleteById(step.id)}
                   />
                 </div>
               </div>

@@ -14,6 +14,13 @@ h2 {
   margin: 0;
 }
 
+span {
+  font-family: system-ui;
+  font-weight: 600;
+  font-size: large;
+  text-transform: uppercase;
+}
+
 label, p {
   font-family: system-ui;
 }
@@ -39,6 +46,12 @@ a {
   
   h2 {
     font-size: 1.1em;
+  }
+  .action__options {
+    gap: 10px;
+  }
+  .options__item, .options__item--disabled {
+    font-size: 9px;
   }
 }
 
@@ -144,13 +157,23 @@ a {
   height: 175px;
   justify-content: space-evenly;
   flex-wrap: wrap;
+  overflow-y: none;
+}
+
+.buttons {
+  gap: 20px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .options__item {
   border: solid;
   border-width: thin;
   border-color: #3f3f3f;
-  width: 180px;
+  width: 20vw;
+  max-width: 180px;
   height: 65px;
   display: flex;
   align-items: center;
@@ -166,7 +189,8 @@ a {
   background-color: #3f3f3f;
   color: darkgray;
   text-decoration: line-through;
-  width: 180px;
+  width: 20vw;
+  max-width: 180px;
   height: 65px;
   display: flex;
   align-items: center;
@@ -212,6 +236,16 @@ a {
   color: #313f35;
 }
 
+.generate.download {
+  width: 25vh;
+  height: 5vh;
+  justify-content: space-evenly;
+}
+
+.generate.download:active {
+  scale: 0.95;
+}
+
 .generate:hover {
   cursor: pointer;
   scale: 1.015;
@@ -224,11 +258,15 @@ a {
   scale: 1;
 }
 
-.generate span {
-  font-family: system-ui;
-  font-weight: 600;
-  font-size: large;
-  text-transform: uppercase;
+.generate.cancel {
+  height: 5vh;
+  background-color: #691b1b;
+  width: 100px;
+}
+
+.generate.cancel span {
+  font-weight: 400;
+  font-size: 14px;
 }
 
 .output {
@@ -236,12 +274,18 @@ a {
   width: 100%;
   border-radius: 3px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
+  color: white;
 }
 
 #data.output {
+  padding-block: 20px;
   height: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
 }
 
 #loading.output {
@@ -332,6 +376,15 @@ a {
   height: auto;
   width: 100%;
   color: white;
+}
+
+.steps.disabled {
+  color: #3f3f3f;
+  cursor: no-drop;
+}
+
+.steps.disabled i {
+  color: #3f3f3f;
 }
 
 #step {

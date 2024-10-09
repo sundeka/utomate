@@ -1,18 +1,32 @@
 import { Riple } from "react-loading-indicators"
 
 type OutputProps = {
-  data: any
+  uri: string | undefined
+  setUri: React.Dispatch<React.SetStateAction<string | undefined>>
   isLoading: boolean
 }
 
 const Output = ({
-  data,
+  uri,
+  setUri,
   isLoading
 }: OutputProps) => {
-  if (data) {
+  
+  const onDownload = () => {
+    // API...
+    setUri(undefined)
+  }
+  
+  if (uri) {
     return (
       <div className="output" id="data">
-        <p style={{color: "white"}}>{data}</p>
+        <div className="generate download" onClick={() => onDownload()}>
+          <i className="fa-solid fa-download"></i>
+          <span>Download robot</span>
+        </div>
+        <div className="generate cancel" onClick={() => setUri(undefined)}>
+          <span>Cancel</span>
+        </div>
       </div>
     )
   } else if (isLoading) {

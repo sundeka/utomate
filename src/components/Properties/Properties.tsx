@@ -1,4 +1,6 @@
 type PropertiesProps = {
+  disableFields: boolean
+  name: string
   setName: (value: React.SetStateAction<string>) => void
   setWebdriver: (value: React.SetStateAction<string>) => void
   webdriver: string
@@ -7,6 +9,8 @@ type PropertiesProps = {
 }
 
 const Properties = ({ 
+  disableFields,
+  name,
   setName,
   setWebdriver,
   webdriver,
@@ -19,6 +23,8 @@ const Properties = ({
         <label>Filename*</label>
         <input 
           id="filename-input" 
+          disabled={disableFields}
+          value={name}
           onChange={(event: React.ChangeEvent<HTMLInputElement>) => setName(event.target.value)}
         />
       </div>
@@ -26,6 +32,8 @@ const Properties = ({
         <label>WebDriver</label>
         <select 
           onChange={(event: React.ChangeEvent<HTMLSelectElement>) => setWebdriver(event.target.value)}
+          disabled={disableFields}
+          value={webdriver}
           defaultValue={webdriver}
           data-testid="webdriver-selection"
         >
@@ -37,7 +45,9 @@ const Properties = ({
         <label>Run headless?</label>
         <input 
           type="checkbox" 
-          value="headless" 
+          checked={headless}
+          disabled={disableFields}
+          value="headless"
           onClick={() => setHeadless(!headless)}
         />
       </div>

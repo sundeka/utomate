@@ -8,9 +8,9 @@ import Output from "./components/Output/Output";
 
 const App = () => {
   // API
-  const endpoint = "https://localhost:3000/api/"
+  const endpoint = "http://localhost:8080"// http vs. https
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [data, setData] = useState<string>("")
+  const [downloadUri, setDownloadUri] = useState<string | undefined>(undefined)
 
   // Payload
   const [name, setName] = useState<string>("")
@@ -18,16 +18,18 @@ const App = () => {
   const [headless, setHeadless] = useState<boolean>(false)
   const [steps, setSteps] = useState<Step[]>([])
   
-  const disableGenerate: boolean = isLoading || !name || steps.length == 0
+
+  const disableModification: boolean = !!downloadUri || isLoading
+  const disableGenerate: boolean = disableModification || !name || steps.length === 0
   
-  async function call() {
+  async function generateFileDownloadUri() {
     const payload = { "name": name, "webdriver": webdriver, "headless": headless, "steps": steps }
-    const request = new Request(endpoint, { method: "POST", body: JSON.stringify(payload) });
+    const request = new Request(endpoint + "/api/generate", { method: "POST", headers: {"Content-Type": "application/json"}, body: JSON.stringify(payload) });
     setIsLoading(true)
     try {
-      const response = await fetch(request);
-      const data = await response.json();
-      setData(data)
+      const response = await fetch(request)
+      const uri = await response.text()
+      setDownloadUri(uri)
     } catch (error) {
       alert(String(error))
     } finally {
@@ -38,13 +40,27 @@ const App = () => {
   return (
     <div className="vertical-container">
       <Header />
-      <Properties setName={setName} setWebdriver={setWebdriver} webdriver={webdriver} setHeadless={setHeadless} headless={headless} />
-      <Steps steps={steps} update={setSteps} />
-      <Insert steps={steps} update={setSteps} />
-      <div className={disableGenerate ? "generate disabled" : "generate"} onClick={disableGenerate ? () => {} : () => call()}>
-        <span>Generate</span>
+      <Properties 
+        disableFields={disableModification}
+        name={name}
+        setName={setName} 
+        setWebdriver={setWebdriver} 
+        webdriver={webdriver} 
+        setHeadless={setHeadless} 
+        headless={headless} 
+      />
+      <Steps disableEdit={disableModification} steps={steps} update={setSteps} />
+      <Insert disableInsertion={disableModification} steps={steps} update={setSteps} />
+      <div className="buttons">
+        <div className={disableGenerate ? "generate disabled" : "generate"} onClick={disableGenerate ? () => {} : () => generateFileDownloadUri()}>
+          <span>Generate</span>
+        </div>
       </div>
-      <Output data={data} isLoading={isLoading} />
+      <Output 
+        uri={downloadUri} 
+        setUri={setDownloadUri} 
+        isLoading={isLoading} 
+      />
     </div>
   );
 }
