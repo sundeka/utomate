@@ -1,12 +1,12 @@
 import { useState } from "react";
-import Properties from "./components/Properties/Properties";
-import Header from "./components/Header/Header";
-import Steps from "./components/Steps/Steps";
-import { Step } from "./objects/Step";
-import Insert from "./components/Insert/Insert";
-import Output from "./components/Output/Output";
+import Properties from "../components/Properties/Properties";
+import Header from "../components/Header/Header";
+import Steps from "../components/Steps/Steps";
+import { Step } from "../objects/Step";
+import Insert from "../components/Insert/Insert";
+import Output from "../components/Output/Output";
 
-const App = () => {
+const Root = () => {
   // API
   const endpoint = "http://localhost:8080"// http vs. https
   const [isLoading, setIsLoading] = useState<boolean>(false)
@@ -18,7 +18,6 @@ const App = () => {
   const [headless, setHeadless] = useState<boolean>(false)
   const [steps, setSteps] = useState<Step[]>([])
   
-
   const disableModification: boolean = !!downloadUri || isLoading
   const disableGenerate: boolean = disableModification || !name || steps.length === 0
   
@@ -75,4 +74,4 @@ const App = () => {
   );
 }
 
-export default App;
+export default Root;
