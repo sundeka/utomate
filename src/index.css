@@ -289,7 +289,9 @@ a {
 }
 
 #loading.output {
-  height: 140px;
+  color: #7b7575;
+  height: 196px;
+  gap: 20px;
 }
 
 .instance__header {
