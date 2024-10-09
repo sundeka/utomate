@@ -57,8 +57,10 @@ const App = () => {
         </div>
       </div>
       <Output 
+        api={endpoint}
         uri={downloadUri} 
         setUri={setDownloadUri} 
+        fileName={name}
         isLoading={isLoading} 
       />
     </div>
