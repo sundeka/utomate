@@ -37,6 +37,20 @@ const App = () => {
     }
   }
 
+  async function onDownload() {
+    const response = await fetch(endpoint + downloadUri)
+    const blob = await response.blob()
+    const url = window.URL.createObjectURL(blob)
+    const a = document.createElement("a")
+    a.href = url
+    a.download = name + ".txt"
+    document.body.appendChild(a) // Append link to the body (needed for Firefox)
+    a.click()
+    a.remove()
+    window.URL.revokeObjectURL(url)
+    setDownloadUri(undefined)
+  }
+
   return (
     <div className="vertical-container">
       <Header />
@@ -56,13 +70,7 @@ const App = () => {
           <span>Generate</span>
         </div>
       </div>
-      <Output 
-        api={endpoint}
-        uri={downloadUri} 
-        setUri={setDownloadUri} 
-        fileName={name}
-        isLoading={isLoading} 
-      />
+      <Output uri={downloadUri} setUri={setDownloadUri} onDownload={onDownload} isLoading={isLoading} />
     </div>
   );
 }

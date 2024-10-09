@@ -2,18 +2,16 @@ import { useEffect, useState } from "react"
 import { Riple } from "react-loading-indicators"
 
 type OutputProps = {
-  api: string
   uri: string | undefined
   setUri: React.Dispatch<React.SetStateAction<string | undefined>>
-  fileName: string
+  onDownload: () => Promise<void>
   isLoading: boolean
 }
 
 const Output = ({
-  api,
   uri,
   setUri,
-  fileName,
+  onDownload,
   isLoading
 }: OutputProps) => {
   const dotStates = [' . ', ' . . ', ' . . . ']
@@ -27,20 +25,6 @@ const Output = ({
     }, 1000)
     return () => clearInterval(interval)
   }, [])
-
-  async function onDownload() {
-    const response = await fetch(api + uri)
-    const blob = await response.blob()
-    const url = window.URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = fileName + ".txt"
-    document.body.appendChild(a) // Append link to the body (needed for Firefox)
-    a.click()
-    a.remove()
-    window.URL.revokeObjectURL(url)
-    setUri(undefined)
-  }
   
   if (uri) {
     return (
