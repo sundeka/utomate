@@ -27,6 +27,9 @@ const Root = () => {
     setIsLoading(true)
     try {
       const response = await fetch(request)
+      if (response.status != 200) {
+        throw new Error("The server could not process the request. Please try again later.")
+      }
       const uri = await response.text()
       setDownloadUri(uri)
     } catch (error) {
@@ -37,17 +40,24 @@ const Root = () => {
   }
 
   async function onDownload() {
-    const response = await fetch(endpoint + downloadUri)
-    const blob = await response.blob()
-    const url = window.URL.createObjectURL(blob)
-    const a = document.createElement("a")
-    a.href = url
-    a.download = name + ".txt"
-    document.body.appendChild(a) // Append link to the body (needed for Firefox)
-    a.click()
-    a.remove()
-    window.URL.revokeObjectURL(url)
-    setDownloadUri(undefined)
+    try {
+      const response = await fetch(endpoint + downloadUri)
+      if (response.status != 200) {
+        throw new Error("The server could not process the request. Please try again later.")
+      }
+      const blob = await response.blob()
+      const url = window.URL.createObjectURL(blob)
+      const a = document.createElement("a")
+      a.href = url
+      a.download = name + ".zip"
+      document.body.appendChild(a) // Append link to the body (needed for Firefox)
+      a.click()
+      a.remove()
+      window.URL.revokeObjectURL(url)
+      setDownloadUri(undefined)
+    } catch (error) {
+      alert(String(error))
+    }
   }
 
   return (
