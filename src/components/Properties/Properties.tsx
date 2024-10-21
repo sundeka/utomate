@@ -38,7 +38,6 @@ const Properties = ({
           data-testid="webdriver-selection"
         >
           <option value="chrome">Chrome</option>
-          <option value="firefox">Firefox</option>
         </select>
       </div>
       <div id="row" data-testid="row">
