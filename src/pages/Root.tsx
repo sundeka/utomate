@@ -40,6 +40,7 @@ const Root = () => {
   }
 
   async function onDownload() {
+    setIsLoading(true)
     try {
       const response = await fetch(endpoint + downloadUri)
       if (response.status != 200) {
@@ -57,6 +58,8 @@ const Root = () => {
       setDownloadUri(undefined)
     } catch (error) {
       alert(String(error))
+    } finally {
+      setIsLoading(false)
     }
   }
 

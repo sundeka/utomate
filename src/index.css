@@ -290,8 +290,62 @@ a {
 
 #loading.output {
   color: #7b7575;
-  height: 196px;
+  height: 215px;
   gap: 20px;
+  position: relative;
+}
+
+.loading-explanation {
+  color: white;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  justify-content: center;
+  gap: 5px;
+}
+
+.loading-explanation:hover {
+  cursor: pointer;
+}
+
+.loading-explanation #text {
+  text-transform: none;
+  font-weight: 400;
+  font-size: smaller;
+  text-decoration: underline;
+}
+
+.loading-explanation-popup {
+  border-radius: 7px;
+  position: absolute;
+  background-color: #161616;
+  width: 220px;
+  height: 62px;
+  top: 43%;
+  left: 36%;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  justify-content: flex-end;
+  padding: 10px;
+}
+
+.loading-explanation-popup #close {
+  position: absolute;
+  top: 6px;
+  right: 10px;
+  scale: 1.1;
+}
+
+.loading-explanation-popup #close:hover {
+  cursor: pointer;
+}
+
+.loading-explanation-popup span {
+  font-size: 9px;
+  text-transform: none;
+  width: 190px;
 }
 
 .instance__header {

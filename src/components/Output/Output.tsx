@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import { Riple } from "react-loading-indicators"
+import LoadingExplanationPopup from "./LoadingExplanationPopup"
 
 type OutputProps = {
   uri: string | undefined
@@ -16,6 +17,7 @@ const Output = ({
 }: OutputProps) => {
   const dotStates = [' . ', ' . . ', ' . . . ']
   const [dots, setDots] = useState<string>(dotStates[0])
+  const [showExplanation, setShowExplanation] = useState<boolean>(false)
 
   useEffect(() => {
     let index = 1
@@ -43,6 +45,11 @@ const Output = ({
       <div className="output" id="loading" data-testid="load-wrapper">
         <Riple color="#3f3f3f" size="large" />
         <span>Your robot is being generated{dots}</span>
+        <div className="loading-explanation" onClick={() => setShowExplanation(!showExplanation)}>
+          <i className="fa-solid fa-circle-info" />
+          <span id="text">Why is this taking so long?</span>
+        </div>
+        <LoadingExplanationPopup show={showExplanation} setVisibility={setShowExplanation} />
       </div>
     )
   }
